@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from . info import *
 
@@ -36,7 +37,7 @@ SECRET_KEY = 'django-insecure-(7a^^h9!n1pqo@2a97#6o*3#-g1om_w(i!7z_&5(6pujk&d1c*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'LibX_2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [os.path.join(BASE_DIR, 'home', 'templates','home')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
