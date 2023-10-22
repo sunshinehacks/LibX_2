@@ -1,0 +1,47 @@
+{% include "home/header.html" %}
+<title>{% block title %}{% endblock title %}</title>
+
+{% block body %}
+
+<nav class="navbar navbar-custom navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1696620506/libx_mjd0t9.png"
+                alt="LIB-X" width="100" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:home'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home:register'%}">Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home:auth'%}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home:logout'%}">Logout</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+{% endblock body %}
+
+{% block contentpage %}
+
+
+{% endblock contentpage %}
+
+{% include "home/footer.html" %}
