@@ -141,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SITE_ID = 1  # Set this to the appropriate ID for your site
 
 AUTO_LOGOUT = {
-    'IDLE_TIME': timedelta(seconds=10),
+    'IDLE_TIME': timedelta(seconds=60),
     #'SESSION_TIME': timedelta(minutes=30),
     'MESSAGE': 'The session has expired. Please login again to continue.',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,

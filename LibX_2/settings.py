@@ -144,7 +144,7 @@ SITE_ID = 1  # Set this to the appropriate ID for your site
 
 from django.utils.timezone import now
 AUTO_LOGOUT = {
-    'IDLE_TIME': 10,
+    'IDLE_TIME': 60,
     #'SESSION_TIME': timedelta(minutes=30),
     'MESSAGE': 'The session has expired. Please login again to continue.',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True ,
