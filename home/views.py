@@ -66,7 +66,7 @@ def register(request):
         else:
             messages.info(request, "PASSWORD DONT MATCH")
             return redirect('home:register')
-    return render(request,'home\login.html')      
+    return render(request,'login.html')      
         
 def send_successful_registration_email(fname, email):
     #Successful Registration Email.
@@ -175,19 +175,19 @@ def auth(request):
                 return redirect('home:afterlogin')  # Replace 'home:afterlogin' with your desired redirect path
             else:
                 messages.info(request, "Wrong PASSWORD")
-                return render(request, "home\login.html")
+                return render(request, "login.html")
         except User.DoesNotExist:
             messages.info(request, "Username not found")
-            return render(request, "home\login.html")
+            return render(request, "login.html")
 
-    return render(request, "home\login.html")
+    return render(request, "login.html")
     
 
 def afterlogin(request):
-        return render(request, 'home\loginafter.html') 
+        return render(request, 'loginafter.html') 
 
 def logout(request):
-    return render(request, 'home\logout.html')
+    return render(request, 'logout.html')
 
 def forgotpass(request):
     send_otp_fp(request)
