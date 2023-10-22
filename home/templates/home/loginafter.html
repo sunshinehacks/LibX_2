@@ -35,10 +35,10 @@
                     <a class="nav-link" href="{% url 'home:logout'%}">Logout</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            {% if user.is_authenticated %}
+<h3>Hello {{ user.username }} </h3>
+<h4>You are sucessfully logged in.</h4>
+{% endif %}
         </div>
     </div>
 </nav>
@@ -48,15 +48,7 @@
 <script>alert('{{message}}')</script>
 {% endfor %}
 {% endif %}</div>
-{% if user.is_authenticated %}
-<h3>Hello {{ user.username }} </h3>
-<h4>You are sucessfully logged in.</h4>
 
-{% else %}
-<button type="submit"><a href="/logout">Logout</a></button>
-
-
-{% endif %}
 
 
      <div class="banner">
