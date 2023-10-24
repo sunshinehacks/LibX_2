@@ -288,7 +288,6 @@ def pass_reset(request):
                     user_django.set_password(new_pass)
                     user_django.save()
                     send_successful_passreset_email(username,email=request.session['email'])
-                    
                     messages.success(request, 'Password changed successfully')
                     return redirect('home:auth')  # Assuming there's a route named 'home:auth'
 
