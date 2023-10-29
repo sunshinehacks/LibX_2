@@ -134,9 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static','home'),
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -147,7 +144,7 @@ SITE_ID = 1  # Set this to the appropriate ID for your site
 
 from django.utils.timezone import now
 AUTO_LOGOUT = {
-    'IDLE_TIME': 60,
+    'IDLE_TIME': 180,
     #'SESSION_TIME': timedelta(minutes=30),
     'MESSAGE': 'The session has expired. Please login again to continue.',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True ,

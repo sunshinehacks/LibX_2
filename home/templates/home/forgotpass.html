@@ -1,3 +1,4 @@
+{% load static %}
 <!-- forgot_password.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -8,13 +9,14 @@
     <!-- Google Fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/static/home/forgotpass.css">
+    <link rel="stylesheet" href="{% static 'home/forgotpass.css ' %} ">
     <title>Forgot Password</title>
 </head>
 <body>
 <div class="message">{% if messages %}
 {% for message in messages %}
 <script>alert('{{message}}')</script>
+
 {% endfor %}
 {% endif %}</div>
 

@@ -6,8 +6,11 @@ from django.core.mail import send_mail
 from LibX_2 import settings
 import random
 from home.models import UserProfile
-from django.contrib.auth.hashers import make_password
-
+from django.shortcuts import render, get_object_or_404
+from .models import Book
+from .forms import BookForm
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -182,12 +185,16 @@ def auth(request):
 
     return render(request, "login.html")
     
-
+@login_required
 def afterlogin(request):
         return render(request, 'loginafter.html') 
 
 def logout(request):
-    return render(request, 'logout.html')
+    if request.user.is_authenticated:
+        return render(request, 'logout.html')
+    else:
+        messages.info(request, "LOGIN FIRST")
+        return render(request, 'home.html')
 
 def forgotpass(request):
     send_otp_fp(request)
@@ -323,3 +330,46 @@ def send_successful_passreset_email(username,email):
     from_email = settings.EMAIL_HOST_USER
     to_email = email
     send_mail(subject, None, from_email, [to_email], html_message=message, fail_silently=True)
+
+
+#------ BOOK CRUD ------#
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'book_list.html', {'books': books})
+
+def book_detail(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, 'book_detail.html', {'book': book})
+
+def book_new(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.save()
+            return redirect('home:book_detail', pk=book.pk)
+    else:
+        form = BookForm()
+    return render(request, 'book_edit.html', {'form': form})
+
+def book_edit(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.save()
+            return redirect('home:book_detail', pk=book.pk)
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'book_edit.html', {'form': form})
+
+def book_delete(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    book.delete()
+    return redirect('home:book_list')
+
+
+
+
+

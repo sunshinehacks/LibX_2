@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Detail</title>
+</head>
+<body>
+    <h1>Book Detail</h1>
+    <p><strong>Title:</strong> {{ book.title }}</p>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+    <a href="{% url 'home:book_edit' book.id %}">Edit</a>
+    <form action="{% url 'home:book_delete' book.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

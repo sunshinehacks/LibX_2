@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class UserProfile(models.Model):
     first_name = models.CharField(max_length=25,)
@@ -10,6 +11,12 @@ class UserProfile(models.Model):
     otp2 = models.CharField(max_length=25,default='0000')
     status = models.BooleanField(default=False)
     
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    publication_date = models.DateField()
+    time_added = models.DateTimeField(default=timezone.now)
+
 def __str__(self):
         return f'{self.first_name} {self.last_name}'
 

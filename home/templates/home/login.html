@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <!-- Coding by CodingNepal | www.codingnepalweb.com-->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <title> Login and Registration Form in HTML & CSS | CodingLab </title>
-    <link rel="stylesheet" href="/static/home/login.css">
+    <link rel="stylesheet" href="{% static 'home/login.css' %}">
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,7 +21,7 @@
     <input type="checkbox" id="flip">
     <div class="cover">
       <div class="front">
-        <img src="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1696620506/libx_mjd0t9.png" alt="">
+        <img src="{% static 'home/libx.png ' %}" alt="">
         <div class="text">
           <span class="text-1">Every new friend is a <br> new adventure</span>
           <span class="text-2">Let's get connected</span>

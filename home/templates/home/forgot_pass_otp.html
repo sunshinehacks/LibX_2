@@ -1,12 +1,4 @@
-{% comment %} <center><strong>CONFRIM YOUR ACCOUNT</strong></center>
-<center><p>check the inbox of your email {{email}} - and enter the otp<p></center>
-<body>
-<form action="/otp_verify" method="POST">
-{% csrf_token %}
-<center>Enter the otp <input type="text" placeholder="enter the otp" name="otp"></center><br><br> <center><button type="submit">verify</button></center>
-</form>
-</body> {% endcomment %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>OTP</title>
-    <link rel="stylesheet" href="/static/home/otp.css">
+    <link rel="stylesheet" href="{% static 'home/otp.css ' %}">
 </head>
 <body>
 <div class="message">{% if messages %}

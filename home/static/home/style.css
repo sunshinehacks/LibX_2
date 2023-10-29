@@ -85,7 +85,7 @@ span .button {
 
 /* Modify the background color */
 .navbar-custom {
-    background: linear-gradient(90deg,rgba(255,0,61,1) 17%, rgba(115,175,9,1) 60%,black 100%);
+    background: black;
 }
 
 span,
