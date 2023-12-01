@@ -1,0 +1,153 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+          <!-- <link rel="stylesheet" href="/static/forms.css" />   -->
+          <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
+rel="stylesheet"
+/>
+    </head>
+    <body >
+{% block contentpage %}
+        
+    
+<!-- Navbar -->
+
+<nav class="navbar navbar-custom navbar-expand-lg bg-dark navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1698416372/libx_zanic3.png">
+        <img src="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1698416372/libx_zanic3.png"
+            alt="LIB-X" width="250" height="70">
+    </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home:afterlogin'%}">Home</a>
+              </li>
+              {% comment %} <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home:register'%}">Registration</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home:auth'%}">Login</a>
+              </li> {% endcomment %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home:viewbook_view'%}">view Book</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home:bulk_Upload_book'%}">bulkUpload</a>
+              </li> 
+          </ul>
+          <ul class="navbar-nav">  
+              <li class="nav-item ml-auto">
+                  <a class="nav-link active" href="#">{% if user.is_authenticated %}Username : {{ user.username }}{% endif %}</a>
+              </li>
+              <li class="nav-item ml-auto">
+                    <a class="nav-link active" href="{% url 'home:logout'%}">Logout</a>
+              </li>
+          </ul>
+
+          <!-- <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+      </div>
+  </div>
+</nav>
+<br>
+<div class="card col-12">
+
+    <div class="card-header">
+        <h3 class="card-title">Add Book</h3>
+    </div>
+
+    <!-- /.card-header -->
+    
+    <div class="card-body">
+        <form  method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            
+            <!-- <div class="form-group">
+              <label class="control-label col-xs-4">{{ field.label_tag }}</label>
+              <div class="col-xs-8">
+              {{ field }}
+               </div>
+            </div> -->
+			<div class="form-group">
+				<label class="control-label col-xs-4"><label for="id_name">Name:</label></label>
+				<div class="col-xs-8">
+				<input type="text" name="name" maxlength="30" required id="id_name">
+				 </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label class="control-label col-xs-4"><label for="id_isbn">Isbn:</label></label>
+				<div class="col-xs-8">
+				<input type="number" name="isbn" min="0" required id="id_isbn">
+				 </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label class="control-label col-xs-4"><label for="id_author">Author:</label></label>
+				<div class="col-xs-8">
+				<input type="text" name="author" maxlength="40" required id="id_author">
+				 </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label class="control-label col-xs-4"><label for="id_category">Category:</label></label>
+				<div class="col-xs-8">
+				<select name="category" id="id_category">
+	<option value="education" selected>Education</option>
+  
+	<option value="entertainment">Entertainment</option>
+  
+	<option value="comics">Comics</option>
+  
+	<option value="biography">Biographie</option>
+  
+	<option value="history">History</option>
+  
+  </select>
+				 </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label class="control-label col-xs-4"><label for="id_pdf_file">Pdf file:</label></label>
+				<div class="col-xs-8">
+				<input type="file" name="pdf_file" required id="id_pdf_file">
+				 </div>
+			  </div>
+			  
+            
+
+
+    		<div class="form-group">
+    			<div class="col-xs-8 col-xs-offset-4">
+            <button type="submit" class="btn btn-primary btn-lg">ADD</button>
+    			</div>
+    		</div>
+        </form>
+
+    </div>
+
+</div>
+{% endblock contentpage%}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7d2ae8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 40px 40px;
+        }
+
+        .feedback-form {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form-group {
+            margin: 20px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #7d2ae8; /* Adjust the label color */
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #7d2ae8;
+            margin-top: 5px;
+        }
+
+        .rating-icon {
+            color: #FFD700;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px; /* Adjust the top margin */
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #7d2ae8;
+            margin-top: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        h2 {
+            color: #7d2ae8; /* Adjust the heading color */
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="feedback-form">
+        <h2>Feedback Form</h2>
+        <form action="https://formspree.io/f/mbjvweea" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="rating">Choose your rating:</label>
+                <select id="rating" name="rating" onchange="showStars()" required>
+                    <option value="">Select a rating</option>
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+            </div>
+            <div class="form-group" id="stars-container">
+                <label for="stars">Your rating:</label>
+            </div>
+            <div class="form-group" id="stars-message"></div>
+            <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="suggestions">Suggestions:</label>
+                <textarea id="suggestions" name="suggestions" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showStars() {
+            var selectElement = document.getElementById('rating');
+            var selectedValue = selectElement.value;
+            var starsContainer = document.getElementById('stars-container');
+            var starsMessage = document.getElementById('stars-message');
+            starsContainer.innerHTML = '<label for="stars">Your rating:</label>';
+            starsMessage.innerHTML = "";
+            for (var i = 0; i < selectedValue; i++) {
+                starsContainer.innerHTML += '<i class="fas fa-star rating-icon"></i>';
+            }
+            starsMessage.innerHTML = "Thanks for giving us: " + selectedValue + " star rating";
+        }
+    </script>
+</body>
+
+</html>

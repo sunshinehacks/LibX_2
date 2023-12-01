@@ -1,0 +1,93 @@
+<!-- requested_books.html -->
+{% load static %}
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-custom navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1698416372/libx_zanic3.png">
+            <img src="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1698416372/libx_zanic3.png"
+                alt="LIB-X" width="250" height="70">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:home'%}"><i class="fas fa-home"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home:logout'%}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'home:issuebook_view'%}">Issued Book</a>
+                </li>
+            </ul>
+
+            
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> PROFILE
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i> Username: {% if user.is_authenticated %}{{ user.username }}{% endif %}</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-edit"></i> EDIT PROFILE</a></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+{% block content %}
+  <h2>Requested Books</h2>
+  <form method="post" action="{% url 'home:delete_requests' %}">
+    {% csrf_token %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User Name</th>
+          <th>Book Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for request in requested_books %}
+          <tr>
+            <td>{{ request.id }}</td>
+            <td>{{ request.user_name }}</td>
+            <td>{{ request.book_name }}</td>
+            <td>
+              <button type="submit" name="delete_request" value="{{ request.id }}">Delete</button>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+{% endblock %}

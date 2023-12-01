@@ -1,4 +1,4 @@
-{% include "home/header.html" %}
+{% comment %} {% include "home/header.html" %}
 <!-- Remove the container if you want to extend the Footer to full width. -->
 
 <div class="container my-2">
@@ -25,4 +25,45 @@
     </footer>
     
   </div>
-  <!-- End of .container -->
+  <!-- End of .container --> {% endcomment %}
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Add your custom styles here -->
+    <!-- Add any other head elements or stylesheets as needed -->
+    <title>Your Website</title>
+</head>
+<body>
+    <!-- Your website content goes here -->
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Essential Navigation Links -->
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="{% url 'home:home'%}">Home</a></li>
+                    <li><a href="{% url 'home:home'%}">About Us</a></li>
+                    <li><a href="{% url 'home:feedback'%}">Feedback</a></li>
+                    <li><a href="{% url 'home:contactus'%}">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i>Instagram</a>
+                <a href="#" target="_blank"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i>Facebook</a>
+                <a href="#" target="_blank"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i>Twitter</a>
+                <!-- Add more social media icons as needed -->
+            </div>
+
+            <!-- Copyright Information -->
+            <p class="copyright">&copy; 2023 LIB-X. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/88d20cba8f.js" crossorigin="anonymous"></script>
+</body>
+</html>

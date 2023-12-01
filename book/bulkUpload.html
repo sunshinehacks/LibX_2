@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    Bulk Upload
+{% endblock %}
+
+{% block contentpage %}
+<br>
+   
+    <div class="card-body">
+        <form action="{% url 'upload_csv' %}" method="POST" enctype="multipart/form-data">
+
+            <!-- Security token-->
+            {% csrf_token %}
+            <label>File:</label>
+
+            <input type="file" name="csv_file" id="csv_file" required>
+            <button class="btn btn-primary">Upload</button>
+        </form>
+
+    </div>
+
+{% endblock contentpage %}
+

@@ -1,0 +1,80 @@
+{% load static %}
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-custom navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1698416372/libx_zanic3.png">
+            <img src="https://res.cloudinary.com/dfmvkd1w8/image/upload/v1698416372/libx_zanic3.png"
+                alt="LIB-X" width="250" height="70">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:home'%}"><i class="fas fa-home"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home:logout'%}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'home:viewbookuser_view'%}">View Book</a>
+                </li>
+            </ul>
+
+            
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> PROFILE
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i> Username: {% if user.is_authenticated %}{{ user.username }}{% endif %}</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-edit"></i> EDIT PROFILE</a></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+{% block content %}
+  <h2>Book Request Form</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label for="{{ form.book_name.id_for_label }}">Book Name:</label>
+      {{ form.book_name }}
+    </div>
+    <div>
+      <label for="{{ form.user_name.id_for_label }}">User Name:</label>
+      {{ form.user_name }}
+    </div>
+    <!-- Add other fields as needed -->
+    <button type="submit">Submit Request</button>
+  </form>
+{% endblock %}

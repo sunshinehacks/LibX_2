@@ -13,9 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 import os
 from pathlib import Path
-
 from django.shortcuts import redirect
-from . info import *
+from .info import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +28,9 @@ EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = EMAIL_PORT
 
+LOGIN_URL = 'home.views.auth'
 
+APPEND_SLASH=False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -53,7 +54,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -144,8 +150,10 @@ SITE_ID = 1  # Set this to the appropriate ID for your site
 
 from django.utils.timezone import now
 AUTO_LOGOUT = {
-    'IDLE_TIME': 180,
+    'IDLE_TIME': timedelta(minutes=30),
     #'SESSION_TIME': timedelta(minutes=30),
     'MESSAGE': 'The session has expired. Please login again to continue.',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True ,
 }
+MEDIA_ROOT =BASE_DIR/"media"
+MEDIA_URL ="/media/"

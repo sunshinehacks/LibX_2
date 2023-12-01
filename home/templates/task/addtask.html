@@ -1,0 +1,32 @@
+{% load crispy_forms_tags %}
+{% block title %}
+    Add Task Manually
+{% endblock %}
+
+{% block content%}
+<br>
+<div class="card col-12">
+
+    <div class="card-header">
+        <h3 class="card-title">Add Task</h3>
+    </div>
+ 
+    <!-- /.card-header alrady cooment-->
+    
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+
+            <!-- Security token ac-->
+            {% csrf_token %}
+
+            <!--Using the formset ac-->
+            <!--{{ form.as_table}} ac-->
+
+            {{ form|crispy}}
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+
+    </div>
+
+</div>
+{% endblock %} 
