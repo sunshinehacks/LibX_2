@@ -471,6 +471,13 @@ def auth(request):
 def afterlogin(request):
         return render(request, 'home/loginafter.html')
 
+def about(request):
+        return render(request, 'home/aboutus.html')
+
+def product(request):
+        return render(request, 'home/product.html')
+
+@login_required
 def userafterlogin(request):
         return render(request, 'home/userafterlogin.html') 
 
